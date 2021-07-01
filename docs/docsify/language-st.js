@@ -1,4 +1,4 @@
-Prism.languages.code = {
+Prism.languages.example = {
 	'comment': [
 		{
 			pattern: /(^|[^\\])(?:\/\*[\s\S]*?(?:\*\/|$)|\(\*[\s\S]*?(?:\*\)|$)|\{[\s\S]*?(?:\}|$))/,
