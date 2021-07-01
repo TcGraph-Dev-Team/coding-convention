@@ -1,8 +1,7 @@
 # TcGraph Coding Conventions - OOP
-
-## Opening Statement
 >Clean code is simple and direct. Clean code reads like well-written prose. Clean code never obscures the designer’s intent but rather is full of crisp abstractions and straightforward lines of control. - Grady Booch author of Object Oriented Analysis and Design with Applications”
 
+## Opening Statement
 This coding convention has been created to help keep our code base clean and tidy.  It will act as a guide for those of you who have not settled on a standard, and will impose rules on those of you who wish to contribute.  
 
 ## Naming
@@ -16,7 +15,7 @@ IF SUP_10.flt THEN
 	UPS.smode := 1;
 END_IF
 ```
-Should be renamed and refactored to remove the comment.  This allows us to read the code without placing any mental obstacles in the way of our understanding.  
+The example above has been renamed and refactored to remove the comment.  This allows us to read the code without placing any mental obstacles in the way of our understanding.  
 ```example
 IF PowerSupply10.HasFault THEN 
 	UPS.mode := FULL_CAPACITY_MODE;
@@ -27,7 +26,7 @@ END_IF
 Where possible, do not abbreviate.  This forces us to think, decode and remember a term.  Every time we give our brain something to do it forces it to work harder.  Instead favour whole words and phrases so that our mind can stay on auto-pilot when reading our code.  
 
 ```example
-   VAR srtBtn : BOOL;
+   VAR strBtn : BOOL;
 ```
 It may seem only a small step, but the brain power that we have saved not decoding an abbreviation can be used for other more creative or fault finding tasks. 
 ```example
@@ -38,7 +37,7 @@ It may seem only a small step, but the brain power that we have saved not decodi
 ## Comments
 Ask yourself 'why do I need a comment?' 
 
-If you need them to convey your code's true meaning then you should refactor and rename your variables to make your intent clear.  
+If you need them to convey your code's true meaning then you should refactor and rename your variables to make your [Intent](?id=intent) intent clear.  
 
 Do not use them for auditing, changes, author.  This adds extra work to the coders following you and they will be missed and become out of date.  Favour source control instead.   
 
@@ -84,6 +83,19 @@ CASE state OF
 END_CASE
 ```
 
+## Constants
+Constants must be ALL_CAPITALS with underscore word separation.
+
+Replace "Magic numbers" with constants to assist with readablity and understanding.  
+```example
+VAR CONSTANT
+
+	MAXIMUM_BUFFER_SIZE_IN_BYTES : UDINT := 200;
+
+END_VAR
+```
+
+
 ## Class
 In the IEC standard there is no keyword for Class, instead you must use a Function Block with the attributes shown below.  
 You should decorate your classes with the no_explicit_call attribute to prevent if from being used as a standard IEC Function Block. 
@@ -91,6 +103,7 @@ You should decorate your classes with the no_explicit_call attribute to prevent 
 {attribute 'no_explicit_call' := 'This FB is a CLASS and must be accessed using methods or properties'}
 ```
 !>You must not place code in the FUNCTION_BLOCK body.  Use a public method instead, such as .CyclicCall();
+
 !>You must not allow VAR_INPUT, VAR_OUTPUT and VAR_IN_OUT to exsit in a class declaration. 
 
 ### Naming
@@ -106,7 +119,7 @@ END_VAR
 ### Private Variables
 Private variables must be **camelCase**.
 
-Private variables which share the same name as a Property must be prefixed with an underscore.  Try to avoid this where possible.   
+Private variables which share the same name as a Property must be prefixed with an underscore.  Try to avoid this type of name clash where possible.   
 
 ### Example
 ```declaration
@@ -127,9 +140,30 @@ END_VAR
 ## Methods
 Classes may use methods.  Methods in a Function Block or Program should be avoided at all costs. 
 
+Methods, like classes should have one reason to exist.  They  should do one job and do it well.    
+
 ### Naming
 Always use **PascalCase** for method names.  You should use verb or verb phrase for method names.  Do not use prefixes. 
 ```example
 cylinder.Retract();
 persistentData.Save();
 ```
+!>Methods should not have the word 'and' in them as this is a sure sign that they are doing more than one job.
+
+### Arguments
+Methods should have as few arguments as possible.  Zero arguments is best.  One argument is ok.  Two arguments is almost too many.  Try to pass objects in to methods in order to reduce argument count.  Avoid Boolean arguments as this is typically a sign that a method is dual purpose. 
+
+```example
+// example of a bad method
+csvReader.LoadFileAndParseResultsToArrayIfLoggingIsEnabled('file.csv',resultsArray,Logging.IsEnabled);
+```
+The example above has been refactored to divide the method in to smaller methods with smaller number of arguments.
+```example
+IF logging.IsEnabled THEN
+	csvReader.LoadFile('file.csv');
+	csvReader.ParseToArray(resultsArray);
+END_IF
+```
+
+
+

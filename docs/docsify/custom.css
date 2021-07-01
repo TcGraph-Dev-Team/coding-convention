@@ -27,13 +27,13 @@ pre {
 }
 
 
-.lang-st_body {
+.lang-body {
     border-top: 1px solid lightgrey;
     margin-bottom : 18px;
     margin-top: 0px !important;
 }
 
-.lang-st pre {
+.lang-body pre {
     margin-top: -18px !important;
     border-top: 1px solid lightgrey;
 }
