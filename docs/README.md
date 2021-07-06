@@ -165,6 +165,6 @@ IF logging.IsEnabled THEN
 END_IF
 ```
 
-## GitGub
+## GitHub
 
-The source for this documentation can be found [here...](https://github.com/TcGraph-Dev-Team/coding-convention)
+The source for this documentation can be found [here.](https://github.com/TcGraph-Dev-Team/coding-convention)
