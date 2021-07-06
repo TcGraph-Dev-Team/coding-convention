@@ -1,3 +1,3 @@
-View the documentation here..
+View the documentation [here...](https://tcgraph-dev-team.github.io/coding-convention/)
 
-[Coding convention](https://tcgraph-dev-team.github.io/coding-convention/)
+
