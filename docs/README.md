@@ -37,7 +37,7 @@ It may seem only a small step, but the brain power that we have saved not decodi
 ## Comments
 Ask yourself 'why do I need a comment?' 
 
-If you need them to convey your code's true meaning then you should refactor and rename your variables to make your [Intent](?id=intent) intent clear.  
+If you need them to convey your code's true meaning then you should refactor and rename your variables to make your [Intent](?id=intent) clear.  
 
 Do not use them for auditing, changes, author.  This adds extra work to the coders following you and they will be missed and become out of date.  Favour source control instead.   
 
