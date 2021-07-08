@@ -14,9 +14,9 @@ npm i docsify-cli -g
 ```
 
 ### Live preview
-You will now be able to preview the site locally by running the following command.
+You will now be able to preview the site locally by running the following command in the root of the repo.
 ```
-docsify serve docs --open
+npm start
 ```
 All changes will cause the live preview to refresh.
 
@@ -24,6 +24,9 @@ All changes will cause the live preview to refresh.
 ```
 .
 +-- README.md               || This file
++-- .gitignore              
++-- package.json
++-- package-lock.json
 +-- docs
 |   +-- README.md           || This is the main documentation file you will edit
 |   +-- index.html          || Docsify template html
@@ -32,4 +35,5 @@ All changes will cause the live preview to refresh.
 |   +-- custom.css          || Custom styling away from the docsify standard
 |   +-- language-st.css     || Structured text syntax highlighting
 |   +-- language-st.js      || Structured text syntax highlighting
+|   +-- plugins             || Plugins to docsify go here...
 ```
